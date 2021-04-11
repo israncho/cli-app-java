@@ -3,6 +3,10 @@ plugins {
   id 'application' 
 }  
  
+run{
+    standardInput = System.in
+}
+
 application {  
   mainClassName = 'app.Main'  
 }  
