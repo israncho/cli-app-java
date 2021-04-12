@@ -7,16 +7,16 @@ import java.util.LinkedList;
  * interface.
  * 
  * @author Jesus Israel Gutierrez Elizalde.
- * @version 1.1.2
+ * @version 1.1.3
  */
 public interface Command {
 
     /**
-     * Performs the action of this command. Some commands have extra usage options.
+     * Runs this command. Some commands have extra usage options.
      * 
      * @param options -- Extra usage options of the command.
      */
-    public void action(LinkedList<String> options);
+    public void run(LinkedList<String> options);
 
     /**
      * Returns the name of this command. The name of the command is also the id, so

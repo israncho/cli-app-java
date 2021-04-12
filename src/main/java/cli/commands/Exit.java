@@ -8,7 +8,7 @@ import cli.Cli;
  * Class for the exit command in the cli.
  * 
  * @author Jesús Israel Gutiérrez Elizalde
- * @version 1.0
+ * @version 1.1
  */
 public class Exit implements Command {
 
@@ -24,7 +24,7 @@ public class Exit implements Command {
     }
 
     @Override
-    public void action(LinkedList<String> options) {
+    public void run(LinkedList<String> options) {
         this.cli.exit();
     }
 

@@ -9,7 +9,7 @@ import cli.Cli;
  * Class for the manual command in the cli.
  * 
  * @author Jesús Israel Gutiérrez Elizalde
- * @version 1.0
+ * @version 1.1
  */
 public class Manual implements Command {
 
@@ -25,8 +25,8 @@ public class Manual implements Command {
     }
 
     @Override
-    public void action(LinkedList<String> options) {
-        String nameCommand = null;
+    public void run(LinkedList<String> options) {
+        String nameCommand = "";
         for (String string : options)
             if (!string.substring(0, 1).equals("-")) {
                 nameCommand = string;
