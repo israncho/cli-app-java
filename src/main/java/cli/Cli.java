@@ -6,12 +6,13 @@ import java.util.Scanner;
 
 import cli.commands.Command;
 import cli.commands.Exit;
+import cli.commands.Manual;
 
 /**
  * Class that models the behavior of a command line interface.
  * 
- * @author Jesus Israel Gutierrez Elizalde.
- * @version 1.0
+ * @author Jesús Israel Gutiérrez Elizalde.
+ * @version 1.0.1
  */
 public class Cli {
 
@@ -27,6 +28,7 @@ public class Cli {
         this.exit = false;
         this.running = false;
         addCommand(new Exit(this));
+        addCommand(new Manual(this));
     }
 
     /**
@@ -55,10 +57,10 @@ public class Cli {
      */
     public void run() {
         this.running = true;
-        System.out.println("\033[33mWelcome to the command line interface!!!\033[0m");
+        System.out.println("\n\033[33mWelcome to the command line interface!!!\033[0m\n");
         Scanner scanner = new Scanner(System.in);
         while (!this.exit) {
-            System.out.print("\033[32mMain\033[0m > ");
+            System.out.print("\033[32mmain\033[0m > ");
             String userIntput = scanner.nextLine();
             if (userIntput.isBlank())
                 continue;
@@ -74,20 +76,22 @@ public class Cli {
             else
                 System.out.println("\033[31mcommand not found\033[0m: " + nameOfTheCmd);
         }
+        System.out.println("\n\033[33mGoodbye :)\033[0m\n");
         scanner.close();
         this.exit = false;
         this.running = false;
     }
 
     /**
-     * Returns the names of all the commands in the cli.
+     * Returns a copy of the commands in the cli. The commands are mapped with their
+     * name, so use their name as key.
      * 
-     * @return LinkedList<String> -- Names of all commands in the cli.
+     * @return HashMap<String, Command> -- Copy of the command in the cli.
      */
-    public LinkedList<String> getCommandsName() {
-        LinkedList<String> copyOfCommands = new LinkedList<>();
-        for (String command : this.commands.keySet())
-            copyOfCommands.addLast(command);
-        return copyOfCommands;
+    public HashMap<String, Command> getCommands() {
+        HashMap<String, Command> copy = new HashMap<>();
+        for (Command command : this.commands.values())
+            copy.put(command.name(), command);
+        return copy;
     }
 }
