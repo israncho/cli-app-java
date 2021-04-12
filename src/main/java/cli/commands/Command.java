@@ -7,7 +7,7 @@ import java.util.LinkedList;
  * interface.
  * 
  * @author Jesus Israel Gutierrez Elizalde.
- * @version 1.1.1
+ * @version 1.1.2
  */
 public interface Command {
 
@@ -34,10 +34,9 @@ public interface Command {
     public String manual();
 
     /**
-     * Returns the message for wrong options of this command. Must be used when the
-     * input options for this command are not quite correct.
+     * Returns the message with the usage and options of this command.
      * 
-     * @return String -- Message for wrong options of the command.
+     * @return String -- Message with the usage and options of this command.
      */
-    public String wrongOptions();
+    public String optionsAndUsage();
 }
