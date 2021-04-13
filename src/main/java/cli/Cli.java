@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import cli.commands.Command;
 import cli.commands.Exit;
+import cli.commands.List;
 import cli.commands.Manual;
 
 /**
@@ -30,6 +31,7 @@ public class Cli {
         this.scanner = new Scanner(System.in);
         addCommand(new Exit(this));
         addCommand(new Manual(this));
+        addCommand(new List(this));
     }
 
     /**
