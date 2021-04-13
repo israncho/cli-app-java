@@ -1,6 +1,5 @@
 package cli.commands;
 
-import java.util.HashMap;
 import java.util.LinkedList;
 
 import cli.Cli;
@@ -9,7 +8,7 @@ import cli.Cli;
  * Class for the manual command in the cli.
  * 
  * @author Jesús Israel Gutiérrez Elizalde
- * @version 1.1
+ * @version 1.2
  */
 public class Manual implements Command {
 
@@ -26,18 +25,40 @@ public class Manual implements Command {
 
     @Override
     public void run(LinkedList<String> options) {
+        System.out.println(optionAndArgs(options));
+    }
+
+    /**
+     * Returns the content given by running this command depending on the specified
+     * options and arguments.
+     * 
+     * @param optionsAndArgs -- options and arguments for this command.
+     * @return String -- message of this command.
+     */
+    public String optionAndArgs(LinkedList<String> optionsAndArgs) {
         String nameCommand = "";
-        for (String string : options)
+        boolean correctOption = false;
+        boolean withOption = false;
+        for (String string : optionsAndArgs) {
             if (!string.substring(0, 1).equals("-")) {
                 nameCommand = string;
-                options.remove(string);
+            } else {
+                withOption = true;
+                if (string.equals("-u"))
+                    correctOption = true;
             }
-        HashMap<String, Command> commands = this.cli.getCommands();
-        Command commandToUse = commands.get(nameCommand);
-        if (commandToUse != null)
-            System.out.println(commandToUse.manual());
-        else
-            System.out.println("\033[31mNo manual for the command\033[0m: " + nameCommand);
+        }
+        if (nameCommand.isEmpty())
+            return this.optionsAndUsage();
+        Command commandToUse = this.cli.getCommands().get(nameCommand);
+        if (commandToUse == null)
+            return "\033[31mNo manual for the command\033[0m: " + nameCommand;
+        if (withOption)
+            if (correctOption)
+                return commandToUse.optionsAndUsage();
+            else
+                return this.optionsAndUsage();
+        return commandToUse.manual();
     }
 
     @Override
@@ -62,7 +83,7 @@ public class Manual implements Command {
         String message = "\n\n";
         message += "\033[36mUsage:\033[0m manual [options] [arguments]\n\n";
         message += "\033[36mOptions:\033[0m\n";
-        message += "\tNo options :(\n";
+        message += "\t-u   just shows the usage and options of the specified command\n";
         return message;
     }
 }
