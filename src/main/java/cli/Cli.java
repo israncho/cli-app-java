@@ -13,7 +13,7 @@ import cli.commands.Manual;
  * Class that models the behavior of a command line interface.
  * 
  * @author Jesús Israel Gutiérrez Elizalde.
- * @version 1.1.0
+ * @version 1.1.1
  */
 public class Cli {
 
@@ -39,6 +39,7 @@ public class Cli {
      * already in the cli commands.
      * 
      * @param command -- command to be added.
+     * @throws IllegalArgumentException if the specified command is null.
      */
     public void addCommand(Command command) {
         if (command == null)
@@ -58,17 +59,20 @@ public class Cli {
 
     /**
      * Exits the cli only if it is running.
+     * 
+     * @throws IllegalStateException if the cli is not running.
      */
     public void exit() {
-        if (this.running)
-            this.exit = true;
-        else
+        if (!this.running)
             throw new IllegalStateException("The cli is not running");
+        this.exit = true;
     }
 
     /**
      * Runs the entire command line interface. This method uses the scanner object
      * of the class and prints in console.
+     * 
+     * @throws IllegalStateException if the scanner of this cli is already closed.
      */
     public void run() {
         if (this.scannerClosed)
@@ -76,7 +80,7 @@ public class Cli {
         this.running = true;
         System.out.println("\n\033[33mWelcome to the command line interface!!!\033[0m");
         while (!this.exit) {
-            System.out.print("\n\033[32mmain\033[0m > ");
+            System.out.print("\n\033[32mapp@CLI\033[0m > ");
             LinkedList<String> commandAndOptions = splitString(scanner.nextLine());
             String nameOfTheCmd = "";
             if (!commandAndOptions.isEmpty())
@@ -107,18 +111,20 @@ public class Cli {
      * exists and it was executed.
      * 
      * @param commandAndOptions
-     * @return
+     * @return boolean -- true if the command exists and it was executed.
+     * @throws IllegalArgumentException if the specified list is null.
      */
     public boolean runCommand(LinkedList<String> commandAndOptions) {
+        if (commandAndOptions == null)
+            throw new IllegalArgumentException("null argument at runCommand().");
         if (commandAndOptions.isEmpty())
             return true;
         String commandName = commandAndOptions.removeFirst();
         Command commandToRun = this.commands.get(commandName);
-        if (commandToRun != null) {
-            commandToRun.run(commandAndOptions);
-            return true;
-        } else
+        if (commandToRun == null)
             return false;
+        commandToRun.run(commandAndOptions);
+        return true;
     }
 
     /**
@@ -127,8 +133,11 @@ public class Cli {
      * 
      * @param string -- string to be splitted.
      * @return LinkedList<String> -- list with the splitted elements.
+     * @throws IllegalArgumentException if the specified string is null.
      */
     private LinkedList<String> splitString(String string) {
+        if (string == null)
+            throw new IllegalArgumentException("null argument at splitString().");
         string = string.strip();
         LinkedList<String> splittedString = new LinkedList<>();
         if (string.isEmpty())
