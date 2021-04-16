@@ -22,13 +22,20 @@ public class Cli {
     private boolean running;
     private Scanner scanner;
     private boolean scannerClosed;
+    private String name;
 
     /**
      * Constructor without parameters of a cli.
+     * 
+     * @param name -- String that will be the name displayed in the command prompt.
+     * @throws IllegalArgumentException if the specified string is null.
      */
-    public Cli() {
+    public Cli(String name) {
+        if (name == null)
+            throw new IllegalArgumentException("null argument at constructor.");
         this.commands = new HashMap<>();
         this.scanner = new Scanner(System.in);
+        this.name = name;
         addCommand(new Exit(this));
         addCommand(new Manual(this));
         addCommand(new List(this));
@@ -80,7 +87,7 @@ public class Cli {
         this.running = true;
         System.out.println("\n\033[33mWelcome to the command line interface!!!\033[0m");
         while (!this.exit) {
-            System.out.print("\n\033[32mapp@CLI\033[0m > ");
+            System.out.print("\n\033[32mCLI~" + this.name + "\033[0m > ");
             LinkedList<String> commandAndOptions = splitString(scanner.nextLine());
             String nameOfTheCmd = "";
             if (!commandAndOptions.isEmpty())
