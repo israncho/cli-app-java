@@ -18,13 +18,18 @@ public class List implements Command {
      * Constructs a list command for the specified cli.
      * 
      * @param cli -- cli that is going to use this new exit command.
+     * @throws IllegalArgumentException if the specified cli is null.
      */
     public List(Cli cli) {
+        if (cli == null)
+            throw new IllegalArgumentException("null argument at list command constructor.");
         this.cli = cli;
     }
 
     @Override
     public void run(LinkedList<String> options) {
+        if (options == null)
+            throw new IllegalArgumentException("null argument at List.run()");
         int count = 1;
         System.out.println("Available commands:");
         for (String string : this.listNames())

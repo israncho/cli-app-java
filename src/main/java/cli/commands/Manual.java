@@ -18,13 +18,18 @@ public class Manual implements Command {
      * Constructs a manual command for the specified cli.
      * 
      * @param cli -- cli that is going to use this new manual command.
+     * @throws IllegalArgumentException if the specified cli is null.
      */
     public Manual(Cli cli) {
+        if (cli == null)
+            throw new IllegalArgumentException("null argument at manual command constructor.");
         this.cli = cli;
     }
 
     @Override
     public void run(LinkedList<String> options) {
+        if (options == null)
+            throw new IllegalArgumentException("null argument at Manual.run()");
         System.out.println(optionAndArgs(options));
     }
 

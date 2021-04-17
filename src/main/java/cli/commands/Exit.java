@@ -18,13 +18,18 @@ public class Exit implements Command {
      * Constructs an exit command for the specified cli.
      * 
      * @param cli -- cli that is going to use this new exit command.
+     * @throws IllegalArgumentException if the specified cli is null.
      */
     public Exit(Cli cli) {
+        if (cli == null)
+            throw new IllegalArgumentException("null argument at exit command constructor.");
         this.cli = cli;
     }
 
     @Override
     public void run(LinkedList<String> options) {
+        if (options == null)
+            throw new IllegalArgumentException("null argument at Exit.run()");
         this.cli.exit();
     }
 

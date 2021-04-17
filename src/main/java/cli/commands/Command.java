@@ -15,6 +15,7 @@ public interface Command {
      * Runs this command. Some commands have extra usage options.
      * 
      * @param options -- Extra usage options of the command.
+     * @throws IllegalArgumentException if the list with the options is null.
      */
     public void run(LinkedList<String> options);
 
