@@ -52,7 +52,7 @@ public class Manual implements Command {
             return this.optionsAndUsage();
         Command commandToUse = this.cli.getCommands().get(nameCommand);
         if (commandToUse == null)
-            return "\033[31mNo manual for the command\033[0m: " + nameCommand;
+            return "No manual for the command: " + nameCommand;
         if (withOption)
             if (correctOption)
                 return commandToUse.optionsAndUsage();
@@ -69,10 +69,10 @@ public class Manual implements Command {
     @Override
     public String manual() {
         String message = "\n";
-        message += "\033[35mmanual\033[0m\n";
-        message += "\033[36mNAME\033[0m\n";
+        message += "manual\n";
+        message += "NAME\n";
         message += "\tmanual - shows the manual of the specified command.\n";
-        message += "\033[36mDESCRIPTION\033[0m\n";
+        message += "DESCRIPTION\n";
         message += "\tCommand to get info and know how to use the commands of the system.";
         message += this.optionsAndUsage();
         return message;
@@ -81,8 +81,8 @@ public class Manual implements Command {
     @Override
     public String optionsAndUsage() {
         String message = "\n\n";
-        message += "\033[36mUsage:\033[0m manual [options] [arguments]\n\n";
-        message += "\033[36mOptions:\033[0m\n";
+        message += "Usage: manual [options] [arguments]\n\n";
+        message += "Options:\n";
         message += "\t-u   just shows the usage and options of the specified command\n";
         return message;
     }

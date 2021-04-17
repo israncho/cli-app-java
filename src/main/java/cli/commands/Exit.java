@@ -36,10 +36,10 @@ public class Exit implements Command {
     @Override
     public String manual() {
         String message = "\n";
-        message += "\033[35mexit\033[0m\n";
-        message += "\033[36mNAME\033[0m\n";
+        message += "exit\n";
+        message += "NAME\n";
         message += "\texit - exits from the command line interface.\n";
-        message += "\033[36mDESCRIPTION\033[0m\n";
+        message += "DESCRIPTION\n";
         message += "\tClassic command to exit from every command line interface.";
         message += this.optionsAndUsage();
         return message;
@@ -48,8 +48,8 @@ public class Exit implements Command {
     @Override
     public String optionsAndUsage() {
         String message = "\n\n";
-        message += "\033[36mUsage:\033[0m exit [options]\n\n";
-        message += "\033[36mOptions:\033[0m\n";
+        message += "Usage: exit [options]\n\n";
+        message += "Options:";
         message += "\tThis command has no options.\n";
         return message;
     }

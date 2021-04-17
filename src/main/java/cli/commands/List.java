@@ -26,9 +26,9 @@ public class List implements Command {
     @Override
     public void run(LinkedList<String> options) {
         int count = 1;
-        System.out.println("\n\033[33mAvailable commands:\033[0m");
+        System.out.println("Available commands:");
         for (String string : this.listNames())
-            System.out.println("\033[35m" + (count++) + "-" + "\033[0m " + string);
+            System.out.println((count++) + "-" + string);
     }
 
     /**
@@ -52,10 +52,10 @@ public class List implements Command {
     @Override
     public String manual() {
         String message = "\n";
-        message += "\033[35mlist\033[0m\n";
-        message += "\033[36mNAME\033[0m\n";
+        message += "list";
+        message += "NAME\n";
         message += "\tlist - lists all the available command for the cli.\n";
-        message += "\033[36mDESCRIPTION\033[0m\n";
+        message += "DESCRIPTION\n";
         message += "\tUseful command to know all the functionalities of the cli.";
         message += this.optionsAndUsage();
         return message;
@@ -64,8 +64,8 @@ public class List implements Command {
     @Override
     public String optionsAndUsage() {
         String message = "\n\n";
-        message += "\033[36mUsage:\033[0m list [options]\n\n";
-        message += "\033[36mOptions:\033[0m\n";
+        message += "Usage: list [options]\n\n";
+        message += "Options:\n";
         message += "\tThis command has no options.\n";
         return message;
     }
