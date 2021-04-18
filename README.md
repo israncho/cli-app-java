@@ -36,11 +36,11 @@ shell, to get the colors for prompt and some prints in console.
 
 ## How to add your own commands
 Create a class and implement the Command interface.
-| <img src="/img/newCommandinUML.png" width="50%"> |
+| <img src="/img/newCommandinUML.png" width="70%"> |
 |:--:|
 ---------------------------------------------------
 Then add your command to the cli in the main method of the Main class.
-| <img src="/img/addingNewCommand.png" width="50%"> |
+| <img src="/img/addingNewCommand.png" width="70%"> |
 |:--:|
 ---------------------------------------------------
 
@@ -48,5 +48,5 @@ Then add your command to the cli in the main method of the Main class.
 Once you are located in the maze-generator folder run the following
 command.
 ```
-gradle -console plain run
+gradle --console plain run
 ```
