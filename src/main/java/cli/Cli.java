@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import cli.commands.Command;
 import cli.commands.Exit;
+import cli.commands.Help;
 import cli.commands.List;
 import cli.commands.Manual;
 
@@ -39,6 +40,7 @@ public class Cli {
         addCommand(new Exit(this));
         addCommand(new Manual(this));
         addCommand(new List(this));
+        addCommand(new Help());
     }
 
     /**
@@ -85,7 +87,10 @@ public class Cli {
         if (this.scannerClosed)
             throw new IllegalStateException("The scanner of this cli is already closed.");
         this.running = true;
-        System.out.println("\n\033[33mWelcome to the command line interface!!!\033[0m");
+        System.out.println("\n\033[33mWelcome to the command line interface!!!\033[0m\n");
+        System.out.println("\033[33mNeed help?, type:\n");
+        System.out.println("\033[33mCLI~" + this.name + " > help\033[0m\n");
+        System.out.println("\033[33mThen press ENTER.\033[0m");
         while (!this.exit) {
             System.out.print("\n\033[32mCLI~" + this.name + "\033[0m > ");
             LinkedList<String> commandAndOptions = splitString(scanner.nextLine());

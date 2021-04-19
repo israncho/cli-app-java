@@ -57,7 +57,7 @@ public class List implements Command {
     @Override
     public String manual() {
         String message = "\n";
-        message += "list";
+        message += "list\n";
         message += "NAME\n";
         message += "\tlist - lists all the available command for the cli.\n";
         message += "DESCRIPTION\n";
