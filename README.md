@@ -50,3 +50,6 @@ command.
 ```
 gradle --console plain run
 ```
+| <img src="/img/exampleRun.png" width="70%"> |
+|:--:|
+---------------------------------------------------
