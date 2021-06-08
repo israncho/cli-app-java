@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.Scanner;
 
 import cli.commands.Command;
+import cli.commands.Echo;
 import cli.commands.Exit;
 import cli.commands.Help;
 import cli.commands.List;
@@ -41,6 +42,7 @@ public class Cli {
         addCommand(new Manual(this));
         addCommand(new List(this));
         addCommand(new Help());
+        addCommand(new Echo());
     }
 
     /**
