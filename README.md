@@ -45,7 +45,7 @@ Then add your command to the cli in the main method of the Main class.
 ---------------------------------------------------
 
 ## How to use it
-Once you are located in the maze-generator folder run the following
+Once you are located in the cli-app-java folder run the following
 command.
 ```
 gradle --console plain run
