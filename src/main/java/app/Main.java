@@ -9,7 +9,7 @@ import cli.Cli;
  */
 public class Main {
     public static void main(String[] args) {
-        Cli cli = new Cli("app");
+        Cli cli = new Cli("app", true);
         cli.run();
         cli.closeScanner();
     }

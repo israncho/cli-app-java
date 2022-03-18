@@ -25,19 +25,25 @@ public class Cli {
     private Scanner scanner;
     private boolean scannerClosed;
     private String name;
+    private boolean colors;
 
     /**
      * Constructor without parameters of a cli.
      * 
-     * @param name -- String that will be the name displayed in the command prompt.
+     * @param name   -- String that will be the name displayed in the command
+     *               prompt.
+     * @param colors -- Boolean to determine if the cli will have colors.
+     *               The colors are for the command prompt and some messages for the
+     *               user.
      * @throws IllegalArgumentException if the specified string is null.
      */
-    public Cli(String name) {
+    public Cli(String name, boolean colors) {
         if (name == null)
             throw new IllegalArgumentException("null argument at constructor.");
         this.commands = new HashMap<>();
         this.scanner = new Scanner(System.in);
         this.name = name;
+        this.colors = colors;
         addCommand(new Exit(this));
         addCommand(new Manual(this));
         addCommand(new List(this));
@@ -89,20 +95,25 @@ public class Cli {
         if (this.scannerClosed)
             throw new IllegalStateException("The scanner of this cli is already closed.");
         this.running = true;
-        System.out.println("\n\033[33mWelcome to the command line interface!!!\033[0m\n");
-        System.out.println("\033[33mNeed help?, type:\n");
-        System.out.println("\033[33mCLI~" + this.name + " > help\033[0m\n");
-        System.out.println("\033[33mThen press ENTER.\033[0m");
+        String adviceMsg = "Welcome to the command line interface!!!\n\n";
+        adviceMsg += "Need help?, type:\n\n";
+        adviceMsg += this.name + "> help\n\n";
+        adviceMsg += "Then press ENTER.";
+        String noCmd = (this.colors) ? "\033[31mcommand not found\033[0m: " : "command not found: ";
+        String prompt = (this.colors) ? "\n\033[32m" + this.name + "\033[0m> " : "\n" + this.name + "> ";
+        adviceMsg = (this.colors) ? "\n\033[33m" + adviceMsg + "\033[0m" : "\n" + adviceMsg;
+        String byeMsg = (this.colors) ? "\n\033[33mGoodbye :)\033[0m\n" : "\nGoodbye :)\n";
+        System.out.println(adviceMsg);
         while (!this.exit) {
-            System.out.print("\n\033[32mCLI~" + this.name + "\033[0m > ");
+            System.out.print(prompt);
             LinkedList<String> commandAndOptions = splitString(scanner.nextLine());
             String nameOfTheCmd = "";
             if (!commandAndOptions.isEmpty())
                 nameOfTheCmd = commandAndOptions.getFirst();
             if (!runCommand(commandAndOptions))
-                System.out.println("\033[31mcommand not found\033[0m: " + nameOfTheCmd);
+                System.out.println(noCmd + nameOfTheCmd);
         }
-        System.out.println("\n\033[33mGoodbye :)\033[0m\n");
+        System.out.println(byeMsg);
         this.exit = false;
         this.running = false;
     }
