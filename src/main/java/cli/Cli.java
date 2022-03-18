@@ -172,4 +172,13 @@ public class Cli {
             splittedString.addLast(stringInArray);
         return splittedString;
     }
+
+    /**
+     * Method to return the scanner of the cli
+     * 
+     * @return Scanner -- the scanner that this cli is using.
+     */
+    public Scanner getScanner() {
+        return this.scanner;
+    }
 }
