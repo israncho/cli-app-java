@@ -8,11 +8,11 @@ run{
 }
 
 application {  
-  mainClassName = 'app.Main'  
+  mainClass.set('app.Main')
 }  
  
 repositories {  
-  jcenter()  
+  mavenCentral() 
 }  
  
 dependencies {  
