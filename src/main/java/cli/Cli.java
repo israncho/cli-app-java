@@ -110,8 +110,13 @@ public class Cli {
             String nameOfTheCmd = "";
             if (!commandAndOptions.isEmpty())
                 nameOfTheCmd = commandAndOptions.getFirst();
-            if (!runCommand(commandAndOptions))
-                System.out.println(noCmd + nameOfTheCmd);
+            try {
+                if (!runCommand(commandAndOptions))
+                    System.out.println(noCmd + nameOfTheCmd);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                e.printStackTrace();
+            }
         }
         System.out.println(byeMsg);
         this.exit = false;
@@ -169,12 +174,13 @@ public class Cli {
             return splittedString;
         String[] splittedBySpaces = string.split(" ");
         for (String stringInArray : splittedBySpaces)
-            splittedString.addLast(stringInArray);
+            if (!stringInArray.equals(" ") && !stringInArray.equals(""))
+                splittedString.addLast(stringInArray);
         return splittedString;
     }
 
     /**
-     * Method to return the scanner of the cli
+     * Method to get the scanner of the cli.
      * 
      * @return Scanner -- the scanner that this cli is using.
      */
