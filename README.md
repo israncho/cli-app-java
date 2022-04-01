@@ -1,7 +1,10 @@
 # cli-app
+
 Foundation for command line interface apps in java using the build
 tool gradle
+
 ## Requirements
+
 You need JDK 11 and gradle 6.9.2 installed in your system, all later
 versions and some older should work.
 To make sure that you have all necessary run the following commands,
@@ -39,16 +42,18 @@ Also to get the best performance of the cli you should use a Unix
 shell, to get the colors for prompt and some prints in console.
 
 ## How to add your own commands
+
 Create a class and implement the Command interface.
-| <img src="/img/newCommandinUML.png" width="70%"> |
+| ![NewCmdUML](https://i.imgur.com/vipjhSu.png) |
 |:--:|
 ---------------------------------------------------
 Then add your command to the cli in the main method of the Main class.
-| <img src="/img/addingNewCommand.png" width="70%"> |
+| ![AddNewCmd](https://i.imgur.com/0zjRj7y.png) |
 |:--:|
 ---------------------------------------------------
 
 ## How to use it
+
 Once you are located in the cli-app-java folder run the following
 command.
 
@@ -56,7 +61,7 @@ command.
 gradle --console plain run
 ```
 
-| <img src="/img/exampleRun.png" width="70%"> |
+| ![Imgur](https://i.imgur.com/0bCENjY.png) |
 |:--:|
 ---------------------------------------------------
 
