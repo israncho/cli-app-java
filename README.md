@@ -61,7 +61,7 @@ command.
 gradle --console plain run
 ```
 
-| ![Imgur](https://i.imgur.com/0bCENjY.png) |
+| ![runningProgram](https://i.imgur.com/0bCENjY.png) |
 |:--:|
 ---------------------------------------------------
 
